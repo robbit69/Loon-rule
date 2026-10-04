@@ -1,6 +1,6 @@
 # Loon-rule
 
-个人 Loon 规则源。`rules/` 下的两份规则来自 8 份本地 Loon 配置的交集；仓库原有的 `Telegram.conf` 和 `Tinder.conf` 保留不变。
+个人 Loon 规则源。`rules/` 下的两份规则来自 8 份本地 Loon 配置的并集；仓库原有的 `Telegram.conf` 和 `Tinder.conf` 保留不变。
 
 ## 订阅链接
 
@@ -26,15 +26,15 @@ https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/LocalDirect.li
 https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/Anthropic.list,policy=BWG,tag=Anthropic,enabled=true
 ```
 
-`FINAL,BWG` 保留在本地 `[Rule]` 段落的最后，表示未命中其他规则的请求走 `BWG`。它没有计入两个订阅文件的规则条数。原有交集共 7 条，其中 6 条转换为订阅规则，1 条作为本地兜底保留。
+`FINAL,BWG` 保留在本地 `[Rule]` 段落的最后，表示未命中其他规则的请求走 `BWG`。它没有计入两个订阅文件的规则条数。本地规则去重后的并集共 7 条，其中 6 条转换为订阅规则，1 条作为本地兜底保留。
 
 替换原有规则时，删除原来的 4 条本地网段规则和 2 条 Anthropic 域名规则，保留其余本地规则、节点和策略组。若已有 `[Remote Rule]` 段落，只需追加两行订阅，不要重复创建段落。其他本地规则、插件和订阅仍可能影响最终分流；该片段只复现此次提取的 7 条规则。
 
-[examples/local-intersection.conf](examples/local-intersection.conf) 是上述用法的配置片段，没有节点信息，请合并使用。
+[examples/local-union.conf](examples/local-union.conf) 是上述用法的配置片段，没有节点信息，请合并使用。
 
-## 交集来源
+## 并集来源
 
-提取日期：2026-10-04（北京时间）。读取各文件的 `[Rule]` 段落，忽略空行和注释，按规则字段去除两侧空格后求交集，并保留第一份 iOS 配置中的顺序。只提取规则；源配置本身没有上传。
+提取日期：2026-10-04（北京时间）。按下面的文件顺序读取各文件的 `[Rule]` 段落，忽略空行和注释，按规则字段去除两侧空格后求并集：完整规则相同时只保留首次出现的一条，不要求每个文件都含有该规则。保留首次出现的顺序，兜底规则放在本地规则最后。只提取规则；源配置本身没有上传。
 
 - `clients/loon-ios-loon.conf`
 - `migration-104/clients/loon-ios-loon.conf`
@@ -45,7 +45,7 @@ https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/Anthropic.list
 - `migration-104/clients/loon-macos.conf`
 - `migration-104/clients/loon-windows.conf`
 
-8 份配置的规则完全一致，因此上述全部文件的交集与两份 iOS 配置的交集相同：
+8 份配置的规则完全一致，共读取 56 条规则，去重后的并集为 7 条。此次改为并集后，两个订阅文件的匹配条件与原发布内容一致，订阅链接也保持不变：
 
 ```ini
 IP-CIDR,127.0.0.0/8,DIRECT,no-resolve

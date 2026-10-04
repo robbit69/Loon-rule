@@ -1,4 +1,4 @@
-# Anthropic rules shared by all eight local Loon configurations.
+# Deduplicated Anthropic rules from the union of eight local Loon configurations.
 # Subscribe with policy=BWG, or select your existing proxy policy.
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,anthropic.com

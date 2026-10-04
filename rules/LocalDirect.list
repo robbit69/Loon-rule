@@ -1,4 +1,4 @@
-# Local direct rules shared by all eight local Loon configurations.
+# Deduplicated local direct rules from the union of eight local Loon configurations.
 # Subscribe with policy=DIRECT.
 IP-CIDR,127.0.0.0/8,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
