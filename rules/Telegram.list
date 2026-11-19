@@ -1,0 +1,54 @@
+# NAME: Telegram - Loon personal rules
+# Maintainer: robbit69
+# Telegram official CIDRs checked: 2026-11-19
+# Reference: https://core.telegram.org/resources/cidr.txt
+# ASN ownership cross-checked against public BGP information.
+# Subscribe as a remote rule with policy set to your working proxy node/group.
+# No embedded policy or node credentials. Keep any existing Telegram.conf separate.
+
+# Telegram domains (exact suffixes; no broad keyword matches)
+DOMAIN-SUFFIX,cdn-telegram.org
+DOMAIN-SUFFIX,telegram-cdn.org
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,telegram.dog
+DOMAIN-SUFFIX,telegram.space
+DOMAIN-SUFFIX,telegramdownload.com
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,tdesktop.com
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,legra.ph
+DOMAIN-SUFFIX,graph.org
+DOMAIN-SUFFIX,telesco.pe
+DOMAIN-SUFFIX,tx.me
+DOMAIN-SUFFIX,tg.dev
+DOMAIN-SUFFIX,telega.one
+DOMAIN-SUFFIX,stel.com
+DOMAIN-SUFFIX,comments.app
+DOMAIN-SUFFIX,contest.com
+DOMAIN-SUFFIX,quiz.directory
+
+# Official Telegram IPv4 CIDR ranges
+IP-CIDR,91.108.56.0/22,no-resolve
+IP-CIDR,91.108.4.0/22,no-resolve
+IP-CIDR,91.108.8.0/22,no-resolve
+IP-CIDR,91.108.16.0/22,no-resolve
+IP-CIDR,91.108.12.0/22,no-resolve
+IP-CIDR,149.154.160.0/20,no-resolve
+IP-CIDR,91.105.192.0/23,no-resolve
+IP-CIDR,91.108.20.0/22,no-resolve
+IP-CIDR,185.76.151.0/24,no-resolve
+
+# Official Telegram IPv6 CIDR ranges
+IP-CIDR6,2001:b28:f23d::/48,no-resolve
+IP-CIDR6,2001:b28:f23f::/48,no-resolve
+IP-CIDR6,2001:67c:4e8::/48,no-resolve
+IP-CIDR6,2001:b28:f23c::/48,no-resolve
+IP-CIDR6,2a0a:f280::/32,no-resolve
+
+# Telegram-owned ASN fallback for addresses outside the published CIDR list
+IP-ASN,211157,no-resolve
+IP-ASN,44907,no-resolve
+IP-ASN,59930,no-resolve
+IP-ASN,62014,no-resolve
+IP-ASN,62041,no-resolve
