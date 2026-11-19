@@ -2,18 +2,16 @@
 # Maintainer: robbit69
 # Telegram official CIDRs checked: 2026-11-19
 # Reference: https://core.telegram.org/resources/cidr.txt
-# ASN ownership cross-checked against public BGP information.
+# ASNs are an optional fallback; remove if a request log reveals an incorrect match.
 # Subscribe as a remote rule with policy set to your working proxy node/group.
 # No embedded policy or node credentials. Keep any existing Telegram.conf separate.
 
 # Telegram domains (exact suffixes; no broad keyword matches)
 DOMAIN-SUFFIX,cdn-telegram.org
-DOMAIN-SUFFIX,telegram-cdn.org
 DOMAIN-SUFFIX,telegram.org
 DOMAIN-SUFFIX,telegram.me
 DOMAIN-SUFFIX,telegram.dog
 DOMAIN-SUFFIX,telegram.space
-DOMAIN-SUFFIX,telegramdownload.com
 DOMAIN-SUFFIX,t.me
 DOMAIN-SUFFIX,tdesktop.com
 DOMAIN-SUFFIX,telegra.ph
@@ -23,10 +21,6 @@ DOMAIN-SUFFIX,telesco.pe
 DOMAIN-SUFFIX,tx.me
 DOMAIN-SUFFIX,tg.dev
 DOMAIN-SUFFIX,telega.one
-DOMAIN-SUFFIX,stel.com
-DOMAIN-SUFFIX,comments.app
-DOMAIN-SUFFIX,contest.com
-DOMAIN-SUFFIX,quiz.directory
 
 # Official Telegram IPv4 CIDR ranges
 IP-CIDR,91.108.56.0/22,no-resolve
