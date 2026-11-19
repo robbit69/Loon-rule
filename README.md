@@ -64,3 +64,32 @@ FINAL,BWG
 - [Loon 官方 FINAL 规则说明](https://github.com/Loon0x00/LoonManual/blob/master/docs/cn/final_rule.md)
 
 订阅文件保留 `no-resolve`，不写入本地策略名；使用 `[Remote Rule]` 中的 `policy` 指定策略。只发布此次提取的规则和使用说明，不包含源配置的代理服务器、密码、UUID、私人订阅地址或证书。
+
+## Telegram 专项分流（2026-11-19）
+
+新增 [rules/Telegram.list](https://github.com/robbit69/Loon-rule/blob/master/rules/Telegram.list)，供 Loon 远程规则订阅。旧的 `Telegram.conf` 不修改，以免影响原订阅。
+
+订阅原始地址：
+
+```text
+https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/Telegram.list
+```
+
+在 Loon 中将该远程规则绑定到**已验证在全局模式下可以正常加载 Telegram 图片的同一个节点或代理策略组**。例如你的实际策略组叫 `Telegram`，可在现有配置的 `[Remote Rule]` 段落追加（不要创建第二个同名段落）：
+
+```ini
+https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/Telegram.list,policy=Telegram,tag=TelegramCustom,enabled=true
+```
+
+请将 `policy=Telegram` 替换为你的**真实**策略组名称。规则列表不内置节点、策略组、订阅口令或账户信息。
+
+此列表包含 Telegram 相关域名、[Telegram 官方 CIDR](https://core.telegram.org/resources/cidr.txt) 当前公开的 IPv4/IPv6 地址段以及 Telegram ASN 作为补充匹配；IP 类规则用 `no-resolve`，不会强制对所有域名进行 DNS 解析。
+
+**排障与验收：**
+
+1. 保持相同节点，先以全局代理确认目标图片可以加载，再回到规则模式测试同一张图片。
+2. 在 Loon 请求记录中检查图片下载时的目标地址、命中规则和最终策略。仅订阅本文件不保证覆盖被其他本地规则抢先匹配的请求；根据 Loon 规则优先级检查本地规则和其他订阅。
+3. 如果新规则模式恢复，则继续测试先前出问题的至少两个群组；若失败，把请求详情用于后续精确修正，不要无依据扩大 IP 网段。
+4. 观察是否有国内站点或其他应用误命中 Telegram 策略，特别检查 ASN 补充匹配。
+
+**当前验证范围：** 已核对仓库文件格式、规则无重复及源文件创建；尚未在你的 iPhone/Loon 上实机验证能否修复图片加载故障。此文件只负责分流，不改变 Telegram 账号地区、内容可见性或客户端限制。
