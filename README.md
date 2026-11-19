@@ -92,4 +92,10 @@ https://raw.githubusercontent.com/robbit69/Loon-rule/master/rules/Telegram.list,
 3. 如果新规则模式恢复，则继续测试先前出问题的至少两个群组；若失败，把请求详情用于后续精确修正，不要无依据扩大 IP 网段。
 4. 观察是否有国内站点或其他应用误命中 Telegram 策略，特别检查 ASN 补充匹配。
 
+### Telegram FakeTLS 恢复连接（2026-11-19 实测线索）
+
+电脑端 Telegram 请求日志出现 `194.221.250.50:443 [www.google.com]`，该 IP 不在 Telegram 官方 CIDR 内。外部项目曾确认 Telegram FakeTLS 恢复连接可能直连此 IP、同时以 `www.google.com` 作为 TLS SNI。因此仅为此**精确 IP**增加 `IP-CIDR,194.221.250.50/32,no-resolve`；不能将整个 `google.com` 规则指向 Telegram 策略，也不能让域名嗅探把目标从原 IP 替换成 Google 的真实 IP。
+
+上述记录来自电脑，并未证明 iPhone 必然使用这条连接。iPhone 若继续失败，应从 **iPhone 的 Loon 请求详情**检查目标 IP、命中规则、实际节点、连接错误；不要单凭桌面客户端的进程记录判断手机规则命中。Loon 的进程规则仅 macOS 生效，iOS 不支持按 `PROCESS-NAME` 全量分流 Telegram。
+
 **当前验证范围：** 已核对仓库文件格式、规则无重复及源文件创建；尚未在你的 iPhone/Loon 上实机验证能否修复图片加载故障。此文件只负责分流，不改变 Telegram 账号地区、内容可见性或客户端限制。
